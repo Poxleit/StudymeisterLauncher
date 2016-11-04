@@ -80,25 +80,34 @@ public class Launcher extends JFrame {
 		JButton btnUpdate = new JButton("UPDATE");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FileManager.getFiles(Locations.REPO_URL, Locations.getLocation()+"/StudymeisterC");
-				double versionNew = 0;
-				double versionOld = 0;
-				try(Scanner scanner1 = new Scanner(new File(Locations.getLocation()+"/StudymeisterC/version.txt"));
-						Scanner scanner2 = new Scanner(new File(Locations.getLocation()+"/Studymeister/version.txt"))){
-					versionNew = scanner1.nextDouble();
-					versionOld = scanner2.nextDouble();
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				
-				if(versionNew > versionOld){
-					FileManager.replaceFile(Locations.getLocation()+"/StudymeisterC/StudymeisterFONIS.jar", Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar");
-					FileManager.replaceFile(Locations.getLocation()+"/StudymeisterC/StudymeisterFONIS.jar", Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar");
-					Updated up = new Updated(true, versionOld, versionNew);
-					up.setVisible(true);
-				}else{
-					Updated up = new Updated(true, versionOld, versionNew);
-					up.setVisible(true);
+				if ((new File(Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar")).isFile()) { //To check if Studymeister has been downloaded previously
+					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/StudymeisterC");
+					double versionNew = 0;
+					double versionOld = 0;
+					try (Scanner scanner1 = new Scanner(
+							new File(Locations.getLocation() + "/StudymeisterC/version.txt"));
+							Scanner scanner2 = new Scanner(
+									new File(Locations.getLocation() + "/Studymeister/version.txt"))) {
+						versionNew = scanner1.nextDouble();
+						versionOld = scanner2.nextDouble();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+
+					if (versionNew > versionOld) {
+						FileManager.replaceFile(Locations.getLocation() + "/StudymeisterC/StudymeisterFONIS.jar",
+								Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar");
+						FileManager.replaceFile(Locations.getLocation() + "/StudymeisterC/StudymeisterFONIS.jar",
+								Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar");
+						Updated up = new Updated(true, versionOld, versionNew);
+						up.setVisible(true);
+					} else {
+						Updated up = new Updated(true, versionOld, versionNew);
+						up.setVisible(true);
+					}
+					FileManager.deleteFolder(new File(Locations.getLocation()+"/StudymeisterC")); //Clears the folder used for updates
+				}else{ //Downloads the Studymeister
+					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/Studymeister");
 				}
 			}
 		});
@@ -121,15 +130,15 @@ public class Launcher extends JFrame {
 	private void exit() {
 		System.exit(0);
 	}
-	
-	private void start(){
+
+	private void start() {
 		String location = Locations.getLocation() + "/Studymeister";
 		ProcessBuilder studymeister = new ProcessBuilder("java", "-jar", location + "/StudymeisterFONIS.jar");
 		studymeister.directory(new File(location));
 		try {
 			studymeister.start();
 			exit();
-		} catch (IOException e) { 
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
