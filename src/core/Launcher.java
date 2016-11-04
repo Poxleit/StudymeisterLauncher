@@ -70,7 +70,11 @@ public class Launcher extends JFrame {
 		JButton btnStart = new JButton("START");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(!(new File(Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar").isFile())){
+					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/Studymeister");
+				}
 				start();
+				
 			}
 		});
 		btnStart.setMinimumSize(new Dimension(80, 23));
