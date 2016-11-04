@@ -39,9 +39,6 @@ public class Launcher extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Launcher() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -95,8 +92,11 @@ public class Launcher extends JFrame {
 				if(versionNew > versionOld){
 					FileManager.replaceFile(Locations.getLocation()+"/StudymeisterC/StudymeisterFONIS.jar", Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar");
 					FileManager.replaceFile(Locations.getLocation()+"/StudymeisterC/StudymeisterFONIS.jar", Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar");
+					Updated up = new Updated(true, versionOld, versionNew);
+					up.setVisible(true);
 				}else{
-					//TODO display up to date dialog
+					Updated up = new Updated(true, versionOld, versionNew);
+					up.setVisible(true);
 				}
 			}
 		});
@@ -105,6 +105,12 @@ public class Launcher extends JFrame {
 		panel.add(btnUpdate);
 
 		JButton btnAbout = new JButton("ABOUT");
+		btnAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				About ab = new About();
+				ab.setVisible(true);
+			}
+		});
 		btnAbout.setMaximumSize(new Dimension(80, 23));
 		btnAbout.setMinimumSize(new Dimension(80, 23));
 		panel.add(btnAbout);
@@ -116,10 +122,11 @@ public class Launcher extends JFrame {
 	
 	private void start(){
 		String location = Locations.getLocation() + "/Studymeister";
-		ProcessBuilder studymeister = new ProcessBuilder("java", "-jar", Locations.getLocation()+"/Studymeister/StudymeisterFONIS.jar");
+		ProcessBuilder studymeister = new ProcessBuilder("java", "-jar", location + "/StudymeisterFONIS.jar");
 		studymeister.directory(new File(location));
 		try {
 			studymeister.start();
+			exit();
 		} catch (IOException e) { 
 			e.printStackTrace();
 		}

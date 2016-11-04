@@ -15,7 +15,6 @@ public class Locations {
 		try {
 			launcher = new File(codeSource.getLocation().toURI().getPath());
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return launcher.getParentFile().getPath();
