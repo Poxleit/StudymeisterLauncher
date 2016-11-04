@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import resources.FileManager;
@@ -30,6 +31,7 @@ public class Launcher extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
 					Launcher frame = new Launcher();
 					frame.setVisible(true);
 				} catch (Exception e) {

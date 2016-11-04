@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Users/Nemanja/Documents/workspace/StudymeisterFONIS/jsch-0.1.53.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nemanja/Documents/workspace/StudymeisterFONIS/org.eclipse.jgit-4.1.0.201509280440-r.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nemanja/Documents/workspace/StudymeisterFONIS/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nemanja/Documents/workspace/StudymeisterLauncher/JTattoo-1.6.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
