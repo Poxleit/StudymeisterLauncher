@@ -86,6 +86,7 @@ public class Launcher extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				if ((new File(Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar")).isFile()) { //To check if Studymeister has been downloaded previously
 					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/StudymeisterC");
+					System.out.println(Locations.getLocation());
 					double versionNew = 0;
 					double versionOld = 0;
 					try (Scanner scanner1 = new Scanner(
@@ -106,12 +107,13 @@ public class Launcher extends JFrame {
 						Updated up = new Updated(true, versionOld, versionNew);
 						up.setVisible(true);
 					} else {
-						Updated up = new Updated(true, versionOld, versionNew);
+						Updated up = new Updated(false, versionOld, versionNew);
 						up.setVisible(true);
 					}
 					FileManager.deleteFolder(new File(Locations.getLocation()+"/StudymeisterC")); //Clears the folder used for updates
 				}else{ //Downloads the Studymeister
 					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/Studymeister");
+					System.out.println("?");
 				}
 			}
 		});
