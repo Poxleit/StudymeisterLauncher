@@ -115,6 +115,12 @@ public class Launcher extends JFrame {
 					FileManager.getFiles(Locations.REPO_URL, Locations.getLocation() + "/Studymeister");
 					System.out.println("?");
 				}
+				try {
+					Runtime.getRuntime().exec("attrib +H "+Locations.getLocation()+"/Studymeister");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnUpdate.setMinimumSize(new Dimension(80, 23));
