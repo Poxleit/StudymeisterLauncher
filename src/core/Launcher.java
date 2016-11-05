@@ -102,8 +102,8 @@ public class Launcher extends JFrame {
 					if (versionNew > versionOld) {
 						FileManager.replaceFile(Locations.getLocation() + "/StudymeisterC/StudymeisterFONIS.jar",
 								Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar");
-						FileManager.replaceFile(Locations.getLocation() + "/StudymeisterC/StudymeisterFONIS.jar",
-								Locations.getLocation() + "/Studymeister/StudymeisterFONIS.jar");
+						FileManager.replaceFile(Locations.getLocation() + "/StudymeisterC/version.txt",
+								Locations.getLocation() + "/Studymeister/version.txt");
 						Updated up = new Updated(true, versionOld, versionNew);
 						up.setVisible(true);
 					} else {
